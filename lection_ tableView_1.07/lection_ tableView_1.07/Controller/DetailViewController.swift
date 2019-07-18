@@ -21,7 +21,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var adressLabel: UILabel!
     
-    
     var task: Task?
     var indexPath: IndexPath?
     var delegate: DetailViewControllerDelegate?
@@ -53,9 +52,8 @@ class DetailViewController: UIViewController {
         
         dateFormatter.dateStyle = DateFormatter.Style.short
         dateFormatter.timeStyle = DateFormatter.Style.short
-        
-        let strDate = dateFormatter.string(from: task.date)
-        label.text = strDate
+        let edDate = dateFormatter.string(from: task.date)
+        label.text = edDate
     }
     
     @IBAction func changeTaskActivityButton(_ sender: UISwitch) {

@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    
     private var tasks: [Task] = Task.loadTask() {
         didSet {
             Task.save(tasks)
@@ -25,7 +24,6 @@ class ViewController: UIViewController {
         splitViewController?.preferredDisplayMode = .allVisible
         
         myTableView.tableFooterView = UIView()
-        
         myTableView.dataSource = self
         myTableView.delegate = self
         
@@ -53,7 +51,6 @@ class ViewController: UIViewController {
     }
 }
 
-
 // MARK: - Configure Table -
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +61,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "xibCellID", for: indexPath) as! XibTableViewCell
         cell.configure(tasks[indexPath.row])
         cell.delegate = self
-        
         return cell
         
     }
@@ -73,7 +69,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            
             
         }
     }
@@ -97,7 +92,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-
 extension ViewController: XibTableViewCellDelegate {
     func didChangeActivity(_ cell: XibTableViewCell, isActive: Bool) {
         
@@ -109,7 +103,6 @@ extension ViewController: XibTableViewCellDelegate {
 }
 
 extension ViewController: UIPopoverPresentationControllerDelegate {
-    
 }
 
 extension ViewController: DetailViewControllerDelegate {
@@ -118,6 +111,4 @@ extension ViewController: DetailViewControllerDelegate {
         Task.save(tasks)
         myTableView.reloadData()
     }
-    
-    
 }
